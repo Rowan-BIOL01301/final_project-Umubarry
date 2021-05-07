@@ -2,7 +2,10 @@
 title: "Final Project"
 subtitle: "Data Science for Biologists, Spring 2021"
 author: Umu Barry
-output: html_document
+output:
+ html_document:
+   theme: cerulean
+   highlight: zenburn
 editor_options: 
   chunk_output_type: console
 ---
@@ -28,7 +31,7 @@ friends_emotions <- readr::read_csv('https://raw.githubusercontent.com/rfordatas
 
 ## Question 1
 
-###During season 1 episode 3 of the friends show, what emotion (Joyful, Neutral, Mad) was more expressed?
+###During season 1 episode 3 of the friends show, what emotion (Joyful, Neutral, Mad) was most expressed?
 
 ### Methods
 
@@ -40,7 +43,7 @@ filter(season==1,episode==3, emotion %in% c("Joyful","Neutral","Mad"))%>% #filte
 select(season, episode, emotion)-> Q1 #selecting the necessary needed data
 Q1%>% #ringing in my renamed selection
   ggplot()+ #ringing in ggplot
-aes(x= emotion, y= episode)+ #assigning X and Y axes
+aes(x= emotion, y= episode,fill="coral 1")+ #assigning X and Y axes
 geom_col()+ #creating the graph 
 theme_classic()+ #changing the theme/background of the graph 
 labs(x= "Emotions", y="Episodes", title = "Q1 Plot", width=4,height=6) #naming X and Y axes, adding a title and the height and width. 
@@ -64,15 +67,15 @@ Based on the graph, the emotion that was expressed the most was Neutral.
 ```{r question2_methods}
 glimpse(friends_emotions) #glimpsing at the friends emotions data
 friends_emotions %>%  #ringing in friends emotions data
-filter(season== "1", episode%in% c("1","2"),emotion=="Joyful")%>% #filtering the needed emotion which i
-select(season,episode,emotion)%>%##selecting the necessary needed data
-group_by(episode)%>%
-mutate(season = if_else(episode =="1","1","2"))%>%
-ggplot()+
-aes(x=season, y= emotion)+
-geom_col()+
-theme_classic()
-labs(x="Season",y ="Emotion", title= "Q2 Plot", width=5, height=7)
+filter(season== "1", episode%in% c("1","2"),emotion=="Joyful")%>% #filtering the needed seasons, episodes, and emotions
+select(season,episode,emotion)%>% ##selecting the necessary needed data
+group_by(episode)%>% #grouping by episode
+mutate(season = if_else(episode =="1","1","2"))%>% #selecting the needed episodes
+ggplot()+ #ringing in ggplot
+aes(x=season, y= emotion,fill="coral 1")+ #assigning axes
+geom_col()+ #creates plot
+theme_classic()+ #changing background
+labs(x="Season",y ="Emotion", title= "Q2 Plot", width=5, height=7) #naming X and Y axes, adding a title and the height and width. 
 ```
 
 ### Answer
@@ -88,44 +91,44 @@ Based on the plot, Season 2 showed more joyful emotions.
 ### Methods
 
 ```{r question3_methods}
-glimpse(friends_emotions)
+glimpse(friends_emotions) #glimpsing at the friends emotions data
 friends_emotions %>% #ringing in friends emotions data
-filter(season==3,episode==6, emotion %in% c("Scared","Sad"))%>% #filtering the season and episode I'm looking at, while also selecting three emotions
+filter(season==3,episode==6, emotion %in% c("Scared","Sad"))%>% #filtering the needed seasons, episodes, and emotions
 select(season, episode, emotion)-> Q3 #selecting the necessary needed data
 Q3%>% #ringing in my renamed selection
   ggplot()+ #ringing in ggplot
-aes(x= emotion, y= episode)+ #assigning X and Y axes
+aes(x= emotion, y= episode, fill="coral 1")+ #assigning X and Y axes
 geom_col()+ #creating the graph 
 theme_classic()+ #changing the theme/background of the graph 
-labs(x= "Emotions", y="Episodes", title = "Q1 Plot", width=4,height=6) #naming X and Y axes, adding a title and the height and width. 
+labs(x= "Emotions", y="Episodes", title = "Q3 Plot", width=5,height=6) #naming X and Y axes, adding a title and the height and width. 
 
 ```
 
 ### Answer
 
-Acoording to the plot, least here
+According to plot 3, the least expressed emotion was sadness. 
 
 
 <br><br>
 
 ## Question 4
 
-#### Out of all the seasons and epidose of friends which emotion was the most expressed?
+#### Out of all the seasons and episodes of friends, which emotion was the most expressed?
 
 ### Methods
 
 ```{r question4_methods}
-glimpse(friends_emotions)
-friends_emotions%>%
+glimpse(friends_emotions) #glimpsing at the friends emotions data
+friends_emotions%>% #ringing in friends emotions data
   ggplot()+ #ringing in ggplot
-aes(x=emotion)+ #assigning X and Y axes
+aes(x=emotion, fill="coral 1")+ #assigning the X axes
 geom_bar()+ #creating the graph 
 theme_classic()+ #changing the theme/background of the graph 
-labs(x= "Emotions", y="Episodes", title = "Q1 Plot", width=4,height=6) #naming X and Y axes, adding a title and the height and width. 
+labs(x= "Emotions",  title = "Q4 Plot", width=6,height=6) #naming X and Y axes, adding a title and the height and width. 
 
 
 ```
 
 ### Answer
 
-Neutral
+Based on the graph, out of all the seasons and episodes, the most expressed emotion was Neutral. 
