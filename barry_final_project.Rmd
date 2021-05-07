@@ -23,6 +23,7 @@ library(tidyverse)
 ## Introduction
 
 ```{r read-examine-data}
+
 friends_emotions <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-09-08/friends_emotions.csv')
 
 ```
@@ -46,7 +47,8 @@ Q1%>% #ringing in my renamed selection
 aes(x= emotion, y= episode,fill="coral 1")+ #assigning X and Y axes
 geom_col()+ #creating the graph 
 theme_classic()+ #changing the theme/background of the graph 
-labs(x= "Emotions", y="Episodes", title = "Q1 Plot", width=4,height=6) #naming X and Y axes, adding a title and the height and width. 
+labs(x= "Emotions", y="Episodes", title = "Q1 Plot")+ #naming X and Y axes, adding a title and the height and width. 
+  theme(legend.position = "none") #deleting legends
 
 ```
 
@@ -75,7 +77,10 @@ ggplot()+ #ringing in ggplot
 aes(x=season, y= emotion,fill="coral 1")+ #assigning axes
 geom_col()+ #creates plot
 theme_classic()+ #changing background
-labs(x="Season",y ="Emotion", title= "Q2 Plot", width=5, height=7) #naming X and Y axes, adding a title and the height and width. 
+labs(x="Season",y ="Emotion", title= "Q2 Plot")+ #naming X and Y axes, adding a title and the height and width. 
+theme(legend.position = "none")#deleting legends
+
+
 ```
 
 ### Answer
@@ -100,7 +105,8 @@ Q3%>% #ringing in my renamed selection
 aes(x= emotion, y= episode, fill="coral 1")+ #assigning X and Y axes
 geom_col()+ #creating the graph 
 theme_classic()+ #changing the theme/background of the graph 
-labs(x= "Emotions", y="Episodes", title = "Q3 Plot", width=5,height=6) #naming X and Y axes, adding a title and the height and width. 
+labs(x= "Emotions", y="Episodes", title = "Q3 Plot")+#naming X and Y axes, adding a title and the height and width.
+  theme(legend.position = "none")#deleting legends
 
 ```
 
@@ -124,7 +130,8 @@ friends_emotions%>% #ringing in friends emotions data
 aes(x=emotion, fill="coral 1")+ #assigning the X axes
 geom_bar()+ #creating the graph 
 theme_classic()+ #changing the theme/background of the graph 
-labs(x= "Emotions",  title = "Q4 Plot", width=6,height=6) #naming X and Y axes, adding a title and the height and width. 
+labs(x= "Emotions",  title = "Q4 Plot")+ #naming X and Y axes, adding a title and the height and width. 
+  theme(legend.position = "none")#deleting legends
 
 
 ```
