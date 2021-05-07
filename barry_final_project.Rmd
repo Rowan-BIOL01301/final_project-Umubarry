@@ -1,0 +1,131 @@
+---
+title: "Final Project"
+subtitle: "Data Science for Biologists, Spring 2021"
+author: Umu Barry
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+# DON'T CHANGE THE NEXT LINE, except to add NEW options if you have any.
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, echo = TRUE, include = TRUE)
+
+# Load all libraries you use HERE:
+library(tidyverse)
+```
+
+<br><br>
+
+## Introduction
+
+```{r read-examine-data}
+friends_emotions <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-09-08/friends_emotions.csv')
+
+```
+
+<br><br>
+
+## Question 1
+
+###During season 1 episode 3 of the friends show, what emotion (Joyful, Neutral, Mad) was more expressed?
+
+### Methods
+
+```{r question1_methods}
+glimpse(friends_emotions) #glimpsing at the friends emotions data
+
+friends_emotions %>% #ringing in friends emotions data
+filter(season==1,episode==3, emotion %in% c("Joyful","Neutral","Mad"))%>% #filtering the season and episode I'm looking at, while also selecting three emotions
+select(season, episode, emotion)-> Q1 #selecting the necessary needed data
+Q1%>% #ringing in my renamed selection
+  ggplot()+ #ringing in ggplot
+aes(x= emotion, y= episode)+ #assigning X and Y axes
+geom_col()+ #creating the graph 
+theme_classic()+ #changing the theme/background of the graph 
+labs(x= "Emotions", y="Episodes", title = "Q1 Plot", width=4,height=6) #naming X and Y axes, adding a title and the height and width. 
+
+```
+
+
+### Answer
+
+Based on the graph, the emotion that was expressed the most was Neutral. 
+
+
+<br><br>
+
+## Question 2
+
+### Between season 1 and 2 of friends, which season showed more Joyful emotions?
+
+### Methods
+
+```{r question2_methods}
+glimpse(friends_emotions) #glimpsing at the friends emotions data
+friends_emotions %>%  #ringing in friends emotions data
+filter(season== "1", episode%in% c("1","2"),emotion=="Joyful")%>% #filtering the needed emotion which i
+select(season,episode,emotion)%>%##selecting the necessary needed data
+group_by(episode)%>%
+mutate(season = if_else(episode =="1","1","2"))%>%
+ggplot()+
+aes(x=season, y= emotion)+
+geom_col()+
+theme_classic()
+labs(x="Season",y ="Emotion", title= "Q2 Plot", width=5, height=7)
+```
+
+### Answer
+Based on the plot, Season 2 showed more joyful emotions.
+
+
+<br><br>
+
+## Question 3
+
+#### During season 3 episode 6 of the friends show, what emotion (sad and scared) was least expressed
+
+### Methods
+
+```{r question3_methods}
+glimpse(friends_emotions)
+friends_emotions %>% #ringing in friends emotions data
+filter(season==3,episode==6, emotion %in% c("Scared","Sad"))%>% #filtering the season and episode I'm looking at, while also selecting three emotions
+select(season, episode, emotion)-> Q3 #selecting the necessary needed data
+Q3%>% #ringing in my renamed selection
+  ggplot()+ #ringing in ggplot
+aes(x= emotion, y= episode)+ #assigning X and Y axes
+geom_col()+ #creating the graph 
+theme_classic()+ #changing the theme/background of the graph 
+labs(x= "Emotions", y="Episodes", title = "Q1 Plot", width=4,height=6) #naming X and Y axes, adding a title and the height and width. 
+
+```
+
+### Answer
+
+Acoording to the plot, least here
+
+
+<br><br>
+
+## Question 4
+
+#### Out of all the seasons and epidose of friends which emotion was the most expressed?
+
+### Methods
+
+```{r question4_methods}
+glimpse(friends_emotions)
+friends_emotions%>%
+  ggplot()+ #ringing in ggplot
+aes(x=emotion)+ #assigning X and Y axes
+geom_bar()+ #creating the graph 
+theme_classic()+ #changing the theme/background of the graph 
+labs(x= "Emotions", y="Episodes", title = "Q1 Plot", width=4,height=6) #naming X and Y axes, adding a title and the height and width. 
+
+
+```
+
+### Answer
+
+Neutral
