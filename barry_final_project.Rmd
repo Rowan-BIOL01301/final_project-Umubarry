@@ -44,8 +44,8 @@ filter(season==1,episode==3, emotion %in% c("Joyful","Neutral","Mad"))%>% #filte
 select(season, episode, emotion)-> Q1 #selecting the necessary needed data
 Q1%>% #ringing in my renamed selection
   ggplot()+ #ringing in ggplot
-aes(x= emotion, y= episode,fill="coral 1")+ #assigning X and Y axes
-geom_col()+ #creating the graph 
+aes(x= emotion, y= episode)+ #assigning X and Y axes
+geom_col(fill= "orange")+ #creating the graph 
 theme_classic()+ #changing the theme/background of the graph 
 labs(x= "Emotions", y="Episodes", title = "Q1 Plot")+ #naming X and Y axes, adding a title and the height and width. 
   theme(legend.position = "none") #deleting legends
@@ -74,8 +74,8 @@ select(season,episode,emotion)%>% ##selecting the necessary needed data
 group_by(episode)%>% #grouping by episode
 mutate(season = if_else(episode =="1","1","2"))%>% #selecting the needed episodes
 ggplot()+ #ringing in ggplot
-aes(x=season, y= emotion,fill="coral 1")+ #assigning axes
-geom_col()+ #creates plot
+aes(x=season, y= emotion)+ #assigning axes
+geom_col(fill="pink")+ #creates plot
 theme_classic()+ #changing background
 labs(x="Season",y ="Emotion", title= "Q2 Plot")+ #naming X and Y axes, adding a title and the height and width. 
 theme(legend.position = "none")#deleting legends
@@ -102,8 +102,8 @@ filter(season==3,episode==6, emotion %in% c("Scared","Sad"))%>% #filtering the n
 select(season, episode, emotion)-> Q3 #selecting the necessary needed data
 Q3%>% #ringing in my renamed selection
   ggplot()+ #ringing in ggplot
-aes(x= emotion, y= episode, fill="coral 1")+ #assigning X and Y axes
-geom_col()+ #creating the graph 
+aes(x= emotion, y= episode)+ #assigning X and Y axes
+geom_col(fill="red")+ #creating the graph 
 theme_classic()+ #changing the theme/background of the graph 
 labs(x= "Emotions", y="Episodes", title = "Q3 Plot")+#naming X and Y axes, adding a title and the height and width.
   theme(legend.position = "none")#deleting legends
@@ -127,8 +127,8 @@ According to plot 3, the least expressed emotion was sadness.
 glimpse(friends_emotions) #glimpsing at the friends emotions data
 friends_emotions%>% #ringing in friends emotions data
   ggplot()+ #ringing in ggplot
-aes(x=emotion, fill="coral 1")+ #assigning the X axes
-geom_bar()+ #creating the graph 
+aes(x=emotion)+ #assigning the X axes
+geom_bar(fill= "green")+ #creating the graph 
 theme_classic()+ #changing the theme/background of the graph 
 labs(x= "Emotions",  title = "Q4 Plot")+ #naming X and Y axes, adding a title and the height and width. 
   theme(legend.position = "none")#deleting legends
